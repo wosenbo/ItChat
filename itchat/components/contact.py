@@ -317,7 +317,7 @@ def add_friend(self, userName, status=2, verifyContent='', autoUpdate=True):
     headers = {
         'ContentType': 'application/json; charset=UTF-8',
         'User-Agent' : config.USER_AGENT }
-    r = self.s.post(url, data=json.dumps(data), headers=headers)
+    r = self.s.post(url, data=json.dumps(data, ensure_ascii=False).encode('utf8'), headers=headers)
     if autoUpdate: self.update_friend(userName)
     return ReturnValue(rawResponse=r)
 
